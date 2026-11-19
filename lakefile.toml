@@ -1,0 +1,19 @@
+name = "erdos963"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["E963"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+# Mathlib v4.36.0, pinned to the exact commit
+rev = "fc4f59e577feb1a4956671bc04ac18aaaf8cd842"
+
+[[lean_lib]]
+name = "E963"
