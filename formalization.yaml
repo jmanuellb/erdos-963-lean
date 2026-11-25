@@ -15,12 +15,12 @@ project:
     a recursion), with the character-sum input replaced by an elementary second moment for a
     Fejér-type kernel. The second part of the problem, whether f(n) ≥ ⌊log₂ n⌋ for every n, is
     open and is not addressed.
-  # Human authors only. Replace the placeholder before submitting.
+  # Human authors only.
   authors:
-    - "<AUTHOR>"
+    - "Manuel Lopez"
   license: "Apache-2.0"
   responsible_maintainers:
-    - "<AUTHOR>"
+    - "Manuel Lopez"
 
 classification:
   arxiv: ["math.CO", "math.NT"]

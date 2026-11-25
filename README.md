@@ -113,7 +113,7 @@ with the same constants.
   [google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures)
   (Apache License 2.0, Copyright 2026 The Formal Conjectures Authors). The `@[category …]`
   attributes were dropped and the `answer` was filled in.
-* **Formalization:** `<AUTHOR>`.
+* **Formalization:** Manuel Lopez.
 
 ## AI assistance
 
