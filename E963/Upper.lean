@@ -1,8 +1,12 @@
-import E963.Iterate
+module
+
+public import E963.Iterate
 
 /-!
 # Erdős 963 — the upper bound from `A = {1, …, n}`
 -/
+
+@[expose] public section
 
 open Finset
 

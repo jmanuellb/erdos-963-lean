@@ -1,8 +1,12 @@
-import E963.Defs
+module
+
+public import E963.Defs
 
 /-!
 # Erdős 963 — the Fejér-type kernel on `ZMod q` and the second moment bound
 -/
+
+@[expose] public section
 
 open Finset
 

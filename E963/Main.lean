@@ -1,11 +1,16 @@
-import E963.Upper
+module
+
+public import E963.Upper
 
 /-!
 # Erdős 963, part i: `f n ~ log₂ n`
 
-The statement `erdos_963.parts.i` is the one of
-`FormalConjectures/ErdosProblems/963.lean`, with the answer `n ↦ Real.logb 2 n`.
+The main result of this file is `f_isEquivalent_logb`. The theorem `erdos_963.parts.i`, with the
+statement of `FormalConjectures/ErdosProblems/963.lean` and the answer `n ↦ Real.logb 2 n`, is
+derived from it in `Solution.lean`.
 -/
+
+@[expose] public section
 
 open Filter Asymptotics Finset
 
@@ -163,25 +168,21 @@ lemma lower_ev (c : ℝ) (hc : 0 < c) :
   have h5 : (t : ℝ) * d = x - 1 - 7 * d := by linarith
   nlinarith
 
-/-- The answer to part i: `f n ~ log₂ n`. -/
-noncomputable def erdos_963.parts.i.answer : ℕ → ℝ := fun n ↦ Real.logb 2 n
-
 /--
 Let $f(n)$ be the maximal $k$ such that in any set $A\subset \mathbb{R}$ of size $n$ there is a
-subset $B\subseteq A$ of size $\lvert B\rvert\geq k$ which is dissociated that is, the sums
-$\sum_{b\in S}b$ are distinct for all $S\subseteq B$. Estimate $f(n)$.
+subset $B\subseteq A$ of size $\lvert B\rvert\geq k$ which is dissociated, that is, the sums
+$\sum_{b\in S}b$ are distinct for all $S\subseteq B$. Then $f(n)\sim\log_2 n$.
 
-This is the first part of Erdős problem 963, read as an asymptotic equivalence
-$f(n)\sim$ `answer n`; the answer is $\log_2 n$.
+This is the first part of Erdős problem 963 with the answer written out.
 -/
-theorem erdos_963.parts.i :
-    (fun n : ℕ ↦ (f n : ℝ)) ~[atTop] erdos_963.parts.i.answer := by
+theorem f_isEquivalent_logb :
+    (fun n : ℕ ↦ (f n : ℝ)) ~[atTop] fun n : ℕ ↦ Real.logb 2 n := by
   rw [Asymptotics.IsEquivalent, Asymptotics.isLittleO_iff]
   intro c hc
   filter_upwards [upper_ev c hc, lower_ev c hc, eventually_ge_atTop 1] with n h1 h2 hn
   have hnR : (1 : ℝ) ≤ n := by exact_mod_cast hn
   have hx : 0 ≤ Real.logb 2 (n : ℝ) := Real.logb_nonneg one_lt_two hnR
-  simp only [Pi.sub_apply, erdos_963.parts.i.answer]
+  simp only [Pi.sub_apply]
   rw [Real.norm_eq_abs, Real.norm_eq_abs, abs_of_nonneg hx, abs_le]
   constructor <;> linarith
 

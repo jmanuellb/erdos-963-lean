@@ -1,12 +1,17 @@
-import Mathlib
+module
+
+public import Mathlib
 
 /-!
 # Erdős Problem 963 — definitions
 
 The definition of `f` and the two API lemmas are copied verbatim from
-`FormalConjectures/ErdosProblems/963.lean` (google-deepmind/formal-conjectures); only the
-attributes `@[category ...]` (which need `FormalConjecturesUtil`) are dropped.
+`FormalConjectures/ErdosProblems/963.lean` (google-deepmind/formal-conjectures, Apache-2.0,
+Copyright 2026 The Formal Conjectures Authors); only the attributes `@[category ...]` (which need
+`FormalConjecturesUtil`) are dropped.
 -/
+
+@[expose] public section
 
 open Filter Asymptotics
 

@@ -1,8 +1,12 @@
-import E963.Step
+module
+
+public import E963.Step
 
 /-!
 # Erdős 963 — the step theorem for finite sets of integers
 -/
+
+@[expose] public section
 
 open Finset
 

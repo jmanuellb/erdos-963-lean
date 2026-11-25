@@ -1,8 +1,12 @@
-import E963.StepThm
+module
+
+public import E963.StepThm
 
 /-!
 # Erdős 963 — iteration of the step theorem and transfer from `ℝ` to `ℤ`
 -/
+
+@[expose] public section
 
 open Finset
 

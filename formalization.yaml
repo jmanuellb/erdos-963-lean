@@ -1,0 +1,150 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# formalization.yaml v0.4, with the fields required by the Palomar registry.
+version: "v0.4"
+
+project:
+  name: "Erdős Problem 963, part i: the largest guaranteed dissociated subset has size ~ log₂ n"
+  description: >-
+    A finite set of real numbers is dissociated if its subset sums are pairwise distinct. Let
+    f(n) be the largest k such that every set of n real numbers has a dissociated subset with at
+    least k elements. This formalization proves that f(n) is asymptotically equivalent to
+    log₂ n, which answers the first part ("estimate f(n)") of Erdős Problem 963 in the form
+    stated in google-deepmind/formal-conjectures. The upper bound comes from the set {1,...,n}.
+    The lower bound f(n) ≥ (1 - o(1)) log₂ n follows the strategy that the user KoishiChan
+    posted in the erdosproblems.com forum in December 2025 (a random dilation modulo a prime and
+    a recursion), with the character-sum input replaced by an elementary second moment for a
+    Fejér-type kernel. The second part of the problem, whether f(n) ≥ ⌊log₂ n⌋ for every n, is
+    open and is not addressed.
+  # Human authors only. Replace the placeholder before submitting.
+  authors:
+    - "<AUTHOR>"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "<AUTHOR>"
+
+classification:
+  arxiv: ["math.CO", "math.NT"]
+  msc2020: ["11B75", "11B30"]
+
+sources:
+  - title: "Comment on Erdős Problem 963: every set of size n contains a dissociated subset of size (1 - o(1)) log₂ n"
+    authors:
+      - "KoishiChan (erdosproblems.com forum user name)"
+    id: "https://www.erdosproblems.com/forum/thread/963#post-2027"
+    type: "web discussion"
+    location: "erdosproblems.com forum thread for Problem 963, post of 5 December 2025, with follow-up comments by Quanyu Tang, Terence Tao and Thomas Bloom"
+    relationship: "adapts"
+    note: >-
+      Source of the lower bound and of its strategy: reduce to integers, multiply by a random
+      residue modulo a large prime, find elements near prescribed residues, and iterate, gaining
+      about m elements while the set shrinks by a factor of about 2^m. The forum argument uses a
+      second moment over Dirichlet characters and the Montgomery-Vaughan fourth-moment estimate
+      for character sums, and an intermediate modulus p. The proof formalized here keeps the
+      strategy but replaces these steps: a second moment for a Fejér-type kernel that needs only
+      orthogonality of additive characters, Dirichlet's pigeonhole principle for the elements
+      near 0, and the residues 2^j g as targets. The forum argument is a sketch that was not
+      published elsewhere as far as we know. It was not formalized line by line. We did not find
+      a later write-up by its author. The forum post is not archived and could be edited.
+    license: "unknown"
+    author_endorsement: "not-contacted"
+  - title: "Extremal problems in number theory"
+    authors:
+      - "Paul Erdős"
+    id: "Proc. Sympos. Pure Math., Vol. VIII (1965), 181-189"
+    type: "paper"
+    location: "https://www.renyi.hu/~p_erdos/1965-02.pdf (p. 188)"
+    relationship: "background"
+    note: >-
+      Source of the problem. Erdős notes the greedy bound f(n) ≥ ⌊log₃ n⌋ and the example
+      a_i = i. The upper bound formalized here is the counting argument for that example.
+  - title: "Erdős Problem #963"
+    authors:
+      - "Thomas F. Bloom"
+    id: "https://www.erdosproblems.com/963"
+    type: "other"
+    relationship: "background"
+    note: >-
+      Problem page (last edited 23 January 2026 when accessed on 25 November 2026). Wording of the
+      problem. In the forum thread a site editor wrote in January 2026 that the problem would be
+      marked as solved. The teorth/erdosproblems database still listed it as open on 25 November
+      2026.
+  - title: "FormalConjectures/ErdosProblems/963.lean"
+    authors:
+      - "The Formal Conjectures Authors"
+    id: "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/963.lean"
+    type: "other"
+    relationship: "background"
+    note: >-
+      Source of the Lean definition of f and of the Lean statement erdos_963.parts.i, which are
+      copied. There the answer is left as sorry. Here it is fun n ↦ Real.logb 2 n.
+    license: "Apache-2.0"
+
+related_formalizations: []
+
+status:
+  scope: >-
+    Proved: the single theorem Erdos963.erdos_963.parts.i, f(n) ~ log₂ n as n → ∞, for sets of
+    real numbers (0 and negative numbers allowed), with f defined by sSup as in
+    formal-conjectures. Also proved, not compared: the explicit bounds Erdos963.f_upper and
+    Erdos963.f_lower. Not proved and not claimed: part ii of the problem
+    (f(n) ≥ ⌊log₂ n⌋ for all n ≥ 1), the positive-reals variant, any rate for the o(1) term
+    beyond what f_upper and f_lower give, and the forum argument in its original form.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus 5.5", "Claude Fable 5.2"]
+      framework: "Claude Code"
+      tool_setup: >-
+        AI-assisted. Coding agents wrote the informal proof in docs/PROOF.md and the Lean
+        development, and ran the Lean compiler locally. A separate agent session audited the
+        result (clean rebuild, leanchecker replay, axiom listing, comparison of the statement
+        with formal-conjectures).
+      cost:
+        wall_time: "about one day of agent work on 18 November 2026, plus packaging on 25 November 2026"
+        spend_usd: "subscription-based"
+        hardware: "local Windows machine"
+      prompting_notes: "n/a"
+  spend_usd: "subscription-based"
+  notes: >-
+    The human author chose the problem, directed the agents and is responsible for the
+    submission. The mathematical variant of the forum argument (Fejér kernel, Dirichlet
+    pigeonhole) was produced by the AI agents and has not been reviewed by a human expert. Its
+    correctness rests on the Lean kernel.
+
+fidelity:
+  divergences: >-
+    The source asks to "estimate f(n)". Following formal-conjectures, this is read as an
+    asymptotic equivalence f(n) ~ answer(n) with answer(n) = log₂ n. answer(0) = logb 2 0 = 0 and
+    f(0) = 0, which does not affect the statement. The problem page says "any set A ⊂ ℝ of size
+    n"; the Lean statement quantifies over Finset ℝ of cardinality n. No other divergence is
+    known.
+
+review:
+  status: "agent-reviewed"
+  reviewers:
+    - "none"
+  notes: >-
+    An independent AI agent session compared the statement with formal-conjectures, rebuilt the
+    project from source, replayed the proof modules with leanchecker and listed the axioms
+    (propext, Classical.choice, Quot.sound). No human mathematician has reviewed the informal
+    proof or the statement beyond the author. No external kernel was run locally.
+
+alignment:
+  namespace: "Erdos963"
+  statements:
+    - source: "Erdős Problem 963, first part (estimate f(n)), as stated in formal-conjectures erdos_963.parts.i"
+      lean: "Erdos963.erdos_963.parts.i"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        Same statement as in formal-conjectures, with erdos_963.parts.i.answer defined as
+        fun n ↦ Real.logb 2 n. The proof is Erdos963.f_isEquivalent_logb in E963/Main.lean.
+
+acknowledgements: >-
+  KoishiChan for the lower-bound argument; Quanyu Tang, Terence Tao and Thomas Bloom for the
+  forum discussion; the authors of formal-conjectures for the formal statement; the Lean and
+  Mathlib communities.

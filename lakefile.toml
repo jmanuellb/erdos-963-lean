@@ -1,7 +1,7 @@
 name = "erdos963"
 version = "0.1.0"
 keywords = ["math"]
-defaultTargets = ["E963"]
+defaultTargets = ["E963", "Challenge", "Solution"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -17,3 +17,12 @@ rev = "fc4f59e577feb1a4956671bc04ac18aaaf8cd842"
 
 [[lean_lib]]
 name = "E963"
+
+# Palomar / `lake comparator` layout: `Challenge.lean` is the statement, `Solution.lean` the proof.
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]

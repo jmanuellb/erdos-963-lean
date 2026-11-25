@@ -1,4 +1,6 @@
-import E963.Kernel
+module
+
+public import E963.Kernel
 
 /-!
 # Erdős 963 — the step lemma
@@ -7,6 +9,8 @@ Given a finite set `A` of integers we find a dilation `x ↦ ρ x` modulo a prim
 many elements of `A` are sent close to `0` and, for each `j < m`, some element of `A` is sent
 close to `2 ^ j * g`.
 -/
+
+@[expose] public section
 
 open Finset
 

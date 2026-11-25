@@ -1,8 +1,10 @@
-import E963.Defs
-import E963.Kernel
-import E963.Step
-import E963.StepThm
-import E963.Iterate
-import E963.Upper
-import E963.Main
-import E963.Axioms
+module
+
+public import E963.Defs
+public import E963.Kernel
+public import E963.Step
+public import E963.StepThm
+public import E963.Iterate
+public import E963.Upper
+public import E963.Main
+public import E963.Axioms
